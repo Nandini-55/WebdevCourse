@@ -1,3 +1,4 @@
+//1st way to create objects -
 //factory functions  - fucntions that creates objects
 //not commonly used - instead use classes and constructors
 function personMaker(name, age) {
