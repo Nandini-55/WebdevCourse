@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post in Detail</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <h2>Edit your post</h2>
+    <p> Post id : <%= post.id %>
+    </p>
+    <p> Post id : @<%= post.username %>
+    </p>
+    <!-- Html forms doesn't have functionality of patch , it only has get and post -- to get that functionality using 'method-override' package -->
+    <form class="form" method="post" action="/posts/<%= post.id %>?_method=PATCH">
+        <textarea name="content" ><%=post.content%></textarea>
+        <button type="submit">Update</button>
+    </form>
+</body>
+
+</html>
