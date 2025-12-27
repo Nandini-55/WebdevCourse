@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write new chat</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/newForm.css">
+</head>
+
+<body>
+    <h3>Edit chat..</h3>
+
+    <form method="post" action="/chats/<%=chat.id%>?_method=PUT">
+        <p class="data"> From: <%=chat.from%>
+        </p>
+        <div class="msg">
+            <p>
+                <textarea name="msg"><%=chat.msg%></textarea>
+            </p>
+        </div>
+        <p class="data"> Received by: <%=chat.to%>
+        </p>
+        <p>
+            <%=chat.created_at.toString().split(" ")[4]%><!--Helps to extract the time-->           
+            </p><br>
+            <p><%=chat.created_at.toString().split(" ").slice(0,4).join(" ")%><!--Helps to extract the date--></p><br>
+        <button>Edit</button>
+    </form>
+            
+
+</body>
+
+</html>

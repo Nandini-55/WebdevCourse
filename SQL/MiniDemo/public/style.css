@@ -1,0 +1,92 @@
+* {
+  font-family: "Roboto Slab", serif;
+  font-optical-sizing: auto; /* keeps font looking sharp at all sizes */
+  color:whitesmoke;
+}
+body{
+  background-color:#2E294E;
+}
+h1,h2{
+    background: #F7A1C4;
+  padding: 5px;
+  color: #2E294E;
+  margin: 5px;
+  border-radius: 10px;
+}
+.post {
+  background: #dc7f9b;
+  padding: 5px 5px 5px 10px;
+  color: aliceblue;
+  margin: 5px;
+  border-radius: 10px;
+}
+
+.form{
+  width: 30vw;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #3C7A89;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 15px;;
+    justify-content: center;
+    color: #8AA399;
+}
+.form input,
+.form textarea,
+.form select {
+  color: #8AA399;          /* text color typed by user */
+  border: 1px solid #8AA399;
+}
+input , textarea{
+    border-radius: 10px;
+    background: aliceblue;
+    padding: 10px;
+    border-style: double;
+    color: #2E294E;
+}
+a{
+  color:aliceblue
+}
+.box{
+  display: flex;
+  justify-content: center;
+}
+button{
+  align-self: center;
+  border: none;
+  background-color: #6D98BA;
+  border-radius: 15px;
+  padding:10px ;
+
+}
+.options{
+  display: flex;
+  gap: 15vw;
+}
+.options a{
+  align-self: center;
+  border: none;
+  background-color: #6D98BA;
+  border-radius: 15px;
+  padding:10px ;
+  text-decoration: none;
+}
+
+#del{
+  align-self: center;
+  border: none;
+  background-color: #ab464e;
+  border-radius: 15px;
+  padding:10px ;
+  
+}
+#del:hover{
+  background-color: #aa4e55;
+  cursor: pointer;
+}
+
+table ,td,th{
+    border:1px solid #dc7f9b;
+}
