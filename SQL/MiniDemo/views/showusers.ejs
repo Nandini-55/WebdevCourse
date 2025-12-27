@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Users</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav>
+        <form method="get" action="/user/add"><button>Sign up</button></form>
+    </nav>
+    <br>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Email</th>
+        </tr>
+        <% for(user of users){ %>
+            <tr>
+                <td>
+                    <%= user.id %>
+                </td>
+                <td>
+                    <%= user.username %>
+                </td>
+                <td>
+                    <%= user.email %>
+                </td>
+                <td>
+                    <form method="GET" action="/user/<%=user.id%>/edit"><button>Edit username</button></form>
+                </td>
+                <td>
+                    <form method="GET" action="/user/<%=user.id%>/delete"><button id="del">Delete user</button></form>
+                </td>
+            </tr>
+
+            <% } %>
+    </table>
+</body>
+
+</html>

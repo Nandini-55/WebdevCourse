@@ -1,0 +1,159 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: #0f172a; /* dark navy */
+  padding: 20px;
+  color: #e5e7eb;
+}
+
+/* Chat card */
+#box {
+  background: #020617; /* deep dark */
+  width: 70%;
+  margin: 15px auto;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #1e293b;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
+}
+
+/* From / To */
+.data {
+  font-size: 13px;
+  color: #94a3b8;
+  margin-bottom: 6px;
+}
+
+/* Message bubble */
+.msg {
+  background: #1e293b;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+.msg p {
+  font-size: 15px;
+  color: #e5e7eb;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+/* Subtle hover */
+#box:hover {
+  border-color: #38bdf8;
+  transition: 0.2s ease-in-out;
+}
+form {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form button {
+  background: #0ea5e9; /* blue accent */
+  color: #020617;
+  border: none;
+  padding: 10px 22px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.4);
+  transition: all 0.2s ease;
+}
+
+form button:hover {
+  background: #38bdf8;
+  box-shadow: 0 6px 18px rgba(56, 189, 248, 0.6);
+  transform: translateY(-2px);
+}
+
+form button:active {
+  transform: scale(0.97);
+}
+form {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+form button {
+  background: #1e293b;
+  color: #e5e7eb;
+  border: 1px solid #334155;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.15s ease, border 0.15s ease;
+}
+
+form button:hover {
+  background: #020617;
+  border-color: #475569;
+}
+
+form button:active {
+  background: #020617;
+}
+.msg {
+  position: relative;
+  background: #1e293b;
+  padding: 14px 16px;
+  border-radius: 8px;
+}
+
+/* group both forms */
+.msg form {
+  display: inline;
+}
+
+/* container positioning */
+.msg form:first-of-type {
+  position: absolute;
+  top: 10px;
+  right: 56px;
+}
+
+.msg form:last-of-type {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+}
+
+/* common button style */
+#edit,
+#delete {
+  background: rgb(0, 0, 0);
+  padding: 5px;
+  border: none;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  line-height: 1;
+  text-decoration: none;
+}
+
+/* edit */
+#edit {
+  color: #64748b;
+}
+
+#edit:hover {
+  color: #e5e7eb;
+}
+
+/* delete */
+#delete {
+  color: hsl(0, 81%, 67%);
+}
+
+#delete:hover {
+  color: #fca5a5;
+}
