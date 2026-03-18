@@ -1,0 +1,5 @@
+Four ways:
+1.normal errors - handled by app.use
+2.async errors - handles by app.use when custom error thrown 
+3.multiple async errors - handled by try catch , but it is bulky
+4.multiple async errors - using asyncWrap (a function which has a function as argument and returns a function containing the execution and error handling of that argument function) - simple just has to define error's reponse once and pass each async function as parameter to asyncWrap
