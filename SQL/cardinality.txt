@@ -1,0 +1,8 @@
+//Database relationship 
+There are three types of database relationships:
+1. One-to-one : e.g. - one country can have on representative
+2. One-to-many : e.g. - One user can have multiple posts.  It is further classified into three categories:
+    a. One to few : e.g. - one account has multiple address in zomato (0-100)
+    b. One to much :(1000-10 lakh)
+    c. One to many : more than 10 lakh
+3. Many-to-many: e.g. - One student can have multiple subjects, and one subject can be assigned to multiple students. 
