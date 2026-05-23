@@ -56,6 +56,9 @@ const router = express.Router(); //creates new router object
 const users = require("./routes/users.js");
 const posts = require("./routes/posts.js");
 
+app.use("/users", users); //"/users" - defines the common path in all routes
+app.use("/posts", posts);
+
 //---------------------------------------------------------------------------------------------
 //COOKIES -
 // HTTP cookies are small blocks of data created by the web server while a user is browsing a website and placed on user's computer or other device by the user's web browser.
@@ -102,7 +105,7 @@ app.get("/getcookies", (req, res) => {
 });
 //part 2: signed cookies - add signed property which ensures cookie is signed(not tampered-no alteration)- it is of boolean type
 
-app.use(cookieParser("secretcode"));
+app.use(cookieParser("secretcode")); //this will be used to verify the cookie is signed or not - it will be attached to each cookie //it must be difficult - this is for example
 app.get("/getssignedcookies", (req, res) => {
   res.cookie("colour", "red", { signed: true }); //Name - colour ; Value - s%3Ared.lUr%2BT1qtRh1Bd8t0cUsklj6hPuj5qNsebwjYhudU%2Fv0
   res.send("Done!");
@@ -115,18 +118,57 @@ app.get("/verify", (req, res) => {
   // no changes - [Object: null prototype] { colour: 'red' }
   //changed value totally - [Object: null prototype] {} - changed (s%3Ared.lUr%2BT1qtRh1Bd8t0cUsklj6hPuj5qNsebwjYhudU%2Fv0) to (red)
   //changed value a bit - [Object: null prototype] { colour: false } - changed the value to (s%3Ayellow.lUr%2BT1qtRh1Bd8t0cUsklj6hPuj5qNsebwjYhudU%2Fv0)
-  if (req.signedCookies != {}) {
-    res.send("Verified!");
-  } else {
-    res.send("Alert!");
-  }
+  res.send("Done!");
 });
 
 //---------------------------------------------------------------------------------------------
-app.use("/users", users); //"/users" - defines the common path in all routes
 
-app.use("/posts", posts);
+//Express Session: An attempt to make our session stateful.It stores data in the server and assigns a session ID.It is an npm package. It creates a seesion middleware with options.
+// The session ID is required to store it as a cookie to retain the information regarding the previous session.
 
+//a single session has same client and server just reqest and responses increses
+const session = require("express-session");
+const sessionOptions = {
+  secret: "mysecretstring",
+  resave: false,
+  saveUninitialized: true,
+};
+app.use(session(sessionOptions)); //it must be difficult - this is for example
+//check this is working or not by going application tab in inspect - then cookies - their will be a cookie name : connect.sid- with random value -this shows session has assigned an id
+//id will be same even if opened mulitple tabs or same website's different pages
+//it is different in different browsers as it consider's them as different user
+//the deprecated warning :
+// express-session deprecated undefined resave option; provide resave option server.js:129:9
+// express-session deprecated undefined saveUninitialized option; provide saveUninitialized option server.js:129:9-- are due to options of resave(automatic resave even if no change is their in the session ) and saveUninitialized(saves uninitialized session -  A session is uninitialized when it is new but not modified.)
+
+// app.get("/test",(req,res)=>{
+//   res.send("test successful");
+// })
+
+app.get("/reqcount", (req, res) => {
+  //counts no. of req send by same user
+  if (req.session.reqcount) {
+    req.session.reqcount += 1;
+  } else {
+    req.session.reqcount = 1; //creates a new property
+    //stored in  MemoryStore - a temporary storage - it can be used in development stage(testing) but not appropriate for production (deployed websites and others can use it), instead use session stores(their are multiple types of session stores . e.g.- cassandra-store , cluster-store, connect-dynamodb)
+  }
+  res.send(`You send a requeset ${req.session.reqcount} times`); //stateful response as it changes the reponse on the basis of session info.
+});
+
+//use session info :-
+app.get("/register", (req, res) => {
+  //enter name query in url  - e.g. - http://localhost:3000/register/?name=nandini
+  let { name = "anonymous" } = req.query;
+  req.session.name = name;//now the session object of request will have a name property which stores the name.
+  console.log( req.session);//Session {cookie: { path: '/', _expires: null, originalMaxAge: null, httpOnly: true }, name: 'nandini'}
+  res.redirect("/hello");
+});
+
+app.get("/hello", (req, res)=>{
+  res.send(`Hello 👋 , ${req.session.name}`);//here we read the value from current session 
+});
+//---------------------------------------------------------------------------------------------
 app.listen(3000, () => {
   console.log("Server is listening to 3000. ");
 });
