@@ -157,17 +157,51 @@ app.get("/reqcount", (req, res) => {
 });
 
 //use session info :-
+// app.get("/register", (req, res) => {
+//   //enter name query in url  - e.g. - http://localhost:3000/register/?name=nandini
+//   let { name = "anonymous" } = req.query;
+//   req.session.name = name;//now the session object of request will have a name property which stores the name.
+//   console.log( req.session);//Session {cookie: { path: '/', _expires: null, originalMaxAge: null, httpOnly: true }, name: 'nandini'}
+//   res.redirect("/hello");
+// });
+
+// app.get("/hello", (req, res)=>{
+//   res.send(`Hello 👋 , ${req.session.name}`);//here we read the value from current session
+// });
+//---------------------------------------------------------------------------------------------
+const path = require("path");
+app.set("view engine", "ejs"); //npm i ejs
+app.set("views", path.join(__dirname, "views"));
+const flash = require("connect-flash");
+
+app.use(flash());
+
+app.use((req, res, next) => {
+  res.locals.successMsg = req.flash("success");
+  res.locals.errorMsg = req.flash("error");
+  next();
+});
+
 app.get("/register", (req, res) => {
   //enter name query in url  - e.g. - http://localhost:3000/register/?name=nandini
   let { name = "anonymous" } = req.query;
-  req.session.name = name;//now the session object of request will have a name property which stores the name.
-  console.log( req.session);//Session {cookie: { path: '/', _expires: null, originalMaxAge: null, httpOnly: true }, name: 'nandini'}
+  req.session.name = name;
+  if (name == "anonymous") {
+    req.flash("error", "user not registered");
+  } else {
+    req.flash("success", "user registered successfully!"); //this is a key value pair : key:"success" and value:"user registered successfully"
+  }
+
   res.redirect("/hello");
 });
 
-app.get("/hello", (req, res)=>{
-  res.send(`Hello 👋 , ${req.session.name}`);//here we read the value from current session 
+//using flash by view
+app.get("/hello", (req, res) => {
+  // console.log(req.flash("success"));//[ 'user registered successfully!' ]
+
+  res.render("page.ejs", { name: req.session.name }); //msg will appear but when you refresh the page it will disappear
 });
+
 //---------------------------------------------------------------------------------------------
 app.listen(3000, () => {
   console.log("Server is listening to 3000. ");
