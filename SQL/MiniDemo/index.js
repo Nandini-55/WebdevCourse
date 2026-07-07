@@ -8,7 +8,7 @@ const app = express();
 const path = require("path");
 const methodOverride = require("method-override");
 const { v4: uuidv4 } = require("uuid");
-
+const dotenv = require("dotenv").config();
 app.use(methodOverride("_method"));
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");

@@ -8,7 +8,7 @@ main()
   .catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/test"); // mongoose help js file to cennect with mongodb database
+  await mongoose.connect("mongodb://127.0.0.1:27017/test"); // mongoose help js file to connect with mongodb database
 
   // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 } //all the operational code is written outside this function even if the connection is not yet setup , because mongoose uses operation buffering - Mongoose lets you start using your models immediately, without waiting for mongoose to establish a connection to MongoDB.
