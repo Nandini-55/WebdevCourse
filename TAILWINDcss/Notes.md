@@ -35,3 +35,11 @@
 - In inspect -> sources ->style.css - you will see many lines of css (default tailwind css)even if the style sheet is empty due to "@import "tailwindcss";". At the end of the file you can the classes you have used in your html.
 
 - for custom styling use classes like - ``` class= " h-[20px]"``` - this will set the height to 20px , but it will create a new class will added into bundle(data send to browser) and increase bundle size.
+
+- If you are using multiple same Tailwind classes on multiple elements and you want to combine them to reduce the length of your code and remove the repetition , use '@apply'.
+E.g.-
+.box{
+@apply bg-purple-500 text-white m-4 border-2 rounded;
+} --Now, wherever you use the box class in HTML, it will use all these classes of Tailwind. 
+.text-white{
+@apply text-black;} --Here you can also manipulate the pre-existing Tailwind classes. This one is an example. 
